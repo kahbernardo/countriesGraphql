@@ -416,6 +416,6 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ---
 
-**Desenvolvido com ❤️ demonstrando habilidades avançadas em Backend Development**
+**Desenvolvido com o 🧠 demonstrando habilidades avançadas em Backend Development**
 
 *Este projeto faz parte do meu portfólio de desenvolvimento backend, mostrando expertise em TypeScript, GraphQL, arquitetura hexagonal, testes e DevOps.*
