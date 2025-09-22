@@ -1,0 +1,200 @@
+# Exemplos de Queries GraphQL para o RestCountries BFF
+
+# 1. Listar todos os países com paginação
+query ListarPaises {
+  paises(pagina: 1, porPagina: 10) {
+    total
+    pagina
+    porPagina
+    itens {
+      codigo2
+      codigo3
+      nome {
+        comum
+        oficial
+      }
+      capital
+      regiao
+      populacao
+    }
+  }
+}
+
+# 2. Buscar país específico por código
+query BuscarPaisBrasil {
+  pais(codigo: "BRA") {
+    codigo2
+    codigo3
+    nome {
+      comum
+      oficial
+      nativo
+    }
+    capital
+    regiao
+    subregiao
+    populacao
+    area
+    moedas {
+      codigo
+      nome
+      simbolo
+    }
+    linguas
+    fusos
+    bandeiras {
+      svg
+      png
+    }
+    mapas {
+      googleMaps
+      openStreetMaps
+    }
+  }
+}
+
+# 3. Filtrar países por região
+query PaisesAmericas {
+  paises(
+    filtro: { regiao: "Americas" }
+    ordenacao: "-populacao"
+    porPagina: 5
+  ) {
+    total
+    itens {
+      nome { comum }
+      capital
+      populacao
+      moedas { codigo simbolo }
+    }
+  }
+}
+
+# 4. Países que falam português
+query PaisesLusofonos {
+  paises(
+    filtro: { lingua: "por" }
+    ordenacao: "-populacao"
+  ) {
+    total
+    itens {
+      nome { comum oficial }
+      regiao
+      populacao
+      linguas
+    }
+  }
+}
+
+# 5. Países que usam o Euro
+query PaisesEuro {
+  paises(
+    filtro: { moeda: "EUR" }
+    ordenacao: "nome"
+  ) {
+    total
+    itens {
+      nome { comum }
+      regiao
+      moedas { codigo nome simbolo }
+    }
+  }
+}
+
+# 6. Países da Europa ordenados por população
+query PaisesEuropa {
+  paises(
+    filtro: { regiao: "Europe" }
+    ordenacao: "-populacao"
+    porPagina: 10
+  ) {
+    total
+    itens {
+      nome { comum }
+      capital
+      populacao
+      area
+      moedas { codigo }
+    }
+  }
+}
+
+# 7. Buscar por nome de país
+query BuscarPorNome {
+  paises(
+    filtro: { nome: "Brazil" }
+  ) {
+    total
+    itens {
+      nome { comum oficial }
+      codigo2
+      regiao
+      populacao
+    }
+  }
+}
+
+# 8. Países da América do Sul
+query PaisesAmericaSul {
+  paises(
+    filtro: { subregiao: "South America" }
+    ordenacao: "nome"
+  ) {
+    total
+    itens {
+      nome { comum }
+      capital
+      populacao
+      linguas
+    }
+  }
+}
+
+# 9. Informações completas de um país específico
+query PaisCompleto {
+  pais(codigo: "USA") {
+    codigo2
+    codigo3
+    nome {
+      comum
+      oficial
+      nativo
+    }
+    capital
+    regiao
+    subregiao
+    populacao
+    area
+    moedas {
+      codigo
+      nome
+      simbolo
+    }
+    linguas
+    fusos
+    bandeiras {
+      svg
+      png
+    }
+    mapas {
+      googleMaps
+      openStreetMaps
+    }
+  }
+}
+
+# 10. Países com maior população (top 10)
+query TopPaisesPopulacao {
+  paises(
+    ordenacao: "-populacao"
+    porPagina: 10
+  ) {
+    total
+    itens {
+      nome { comum }
+      regiao
+      populacao
+      area
+    }
+  }
+}

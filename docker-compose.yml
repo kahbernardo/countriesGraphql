@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  rest-countries-bff:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - CACHE_TTL=300
+      - RATE_LIMIT_MAX=100
+      - RATE_LIMIT_TIME_WINDOW=60000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - rest-countries-network
+
+networks:
+  rest-countries-network:
+    driver: bridge

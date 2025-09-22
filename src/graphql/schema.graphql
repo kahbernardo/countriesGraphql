@@ -1,0 +1,70 @@
+type NomePais {
+  comum: String!
+  oficial: String!
+  nativo: String
+}
+
+type Moeda {
+  codigo: String!
+  nome: String
+  simbolo: String
+}
+
+type Bandeiras {
+  svg: String
+  png: String
+}
+
+type Mapas {
+  googleMaps: String
+  openStreetMaps: String
+}
+
+type Pais {
+  codigo2: String!
+  codigo3: String!
+  nome: NomePais!
+  capital: String
+  regiao: String!
+  subregiao: String
+  populacao: Int!
+  area: Float
+  moedas: [Moeda!]!
+  linguas: [String!]!
+  fusos: [String!]!
+  bandeiras: Bandeiras
+  mapas: Mapas
+}
+
+input FiltroPais {
+  nome: String
+  regiao: String
+  subregiao: String
+  moeda: String
+  lingua: String
+}
+
+enum OrdenacaoPais {
+  nome
+  nome_desc
+  populacao
+  populacao_desc
+}
+
+type ListaPaises {
+  itens: [Pais!]!
+  total: Int!
+  pagina: Int!
+  porPagina: Int!
+}
+
+type Query {
+  paises(
+    filtro: FiltroPais
+    pagina: Int = 1
+    porPagina: Int = 20
+    ordenacao: OrdenacaoPais = nome
+  ): ListaPaises!
+
+  pais(codigo: String!): Pais
+}
