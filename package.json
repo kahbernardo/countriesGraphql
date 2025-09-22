@@ -37,9 +37,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/rest-countries-bff.git"
+    "url": "https://github.com/kahbernardo/countriesGraphql.git"
   },
-  "homepage": "https://github.com/yourusername/rest-countries-bff#readme",
+  "homepage": "https://github.com/kahbernardo/countriesGraphql#readme",
   "dependencies": {
     "@fastify/cors": "^8.4.0",
     "@fastify/rate-limit": "^9.0.1",
